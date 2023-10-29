@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel = "stylesheet" href = "login_page.css">
+    </head>
+    <body>
+        <div class = "header">
+            <img class = "branding" src = "icons/LOGO.png">
+
+            <div class = "header_text">
+                Sign in to CampusKraft
+            </div>
+            <form id = "home page" onsubmit="return authenticateUser()" class= "login_info">
+                <label class = "title_text" for = "username">Enrollment number or Employee ID</label>
+                <input name = "username" id = "username" class = "input_bar" type="text" placeholder="">
+                <label for = "password" class = "title_text">Password</span>
+                <span class = "forgot_passwd">Forgot password?</span>
+                <input id = "password" name = "password" class = "input_bar" type="text" placeholder="">            
+                
+                <button class = "sign_in_button">Sign in</button>
+
+                <script>
+            // Define user information
+            const users = [
+                { username: "23323039", password: "23323039" },
+                { username: "23323006", password: "23323006" },
+                
+            ];
+
+            function authenticateUser() {
+                // Get the entered username and password
+                const enteredUsername = document.getElementById("username").value;
+                const enteredPassword = document.getElementById("password").value;
+
+                // Check if the entered credentials match any user
+                const user = users.find(user => user.username === enteredUsername && user.password === enteredPassword);
+
+                if ((enteredUsername == '23323039')&&(enteredPassword == 23323039)) {
+                    // Authentication successful
+                    alert("Login successful. Redirecting...");
+                    window.location.href = "after_login_page1.html"; // Redirect to the specified page
+                }
+                else if ((enteredUsername == '23323006')&&(enteredPassword == 23323006)) {
+                    // Authentication successful
+                    alert("Login successful. Redirecting...");
+                    window.location.href = "after_login_page2.html";
+                }
+                
+                
+                else {
+                    // Authentication failed
+                    alert("Invalid username or password. Please try again.");
+                }
+
+                return false; // Prevent the form from submitting
+            }
+        </script>
+
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calendar</title>
+  <style>
+    /* Add some basic styling for the calendar */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .calendar {
+      width: 300px;
+      margin: 0 auto;
+    }
+    .calendar header {
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+    .calendar table {
+      width: 100%;
+    }
+    .calendar th, .calendar td {
+      text-align: center;
+      padding: 5px;
+    }
+    .calendar .today {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <header>
+      <h1>October 2023</h1>
+    </header>
+    <table>
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+      </tr>
+      <!-- Continue adding days for the entire month -->
+    </table>
+  </div>
+
+  <script>
+    // JavaScript code to populate the calendar with days
+    const calendarTable = document.querySelector('.calendar table');
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+
+    function buildCalendar(year, month) {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      let date = new Date(year, month, 1);
+      let dayOfWeek = firstDay.getDay();
+      let tableRow = calendarTable.insertRow(-1);
+
+      while (date <= lastDay) {
+        if (dayOfWeek === 0) {
+          tableRow = calendarTable.insertRow(-1);
+        }
+
+        const cell = tableRow.insertCell(-1);
+        cell.textContent = date.getDate();
+
+        if (date.getMonth() !== month) {
+          cell.classList.add('other-month');
+        }
+
+        if (date.toDateString() === today.toDateString()) {
+          cell.classList.add('today');
+        }
+
+        date.setDate(date.getDate() + 1);
+        dayOfWeek = (dayOfWeek + 1) % 7;
+      }
+    }
+
+    buildCalendar(currentYear, currentMonth);
+  </script>
+</body>
+</html>
